@@ -155,5 +155,43 @@
     </div>
 
     <script src="renderer.js"></script>
+    <!-- Mode 3: Notes + Timer -->
+    <div class="nook-tray tools-tray mode-hidden" id="mode-tools">
+        <div class="tools-notes">
+            <div class="notes-pad" id="notes-pad" contenteditable="true" spellcheck="false">Notes for me.<br>Notes for you.</div>
+            <div class="notes-toolbar">
+                <button class="notes-color" id="notes-color" type="button" aria-label="Text color"></button>
+                <div class="notes-format">
+                    <button type="button" data-cmd="foreColor" aria-label="Accent color">A</button>
+                    <button type="button" data-cmd="bold" aria-label="Bold"><b>B</b></button>
+                    <button type="button" data-cmd="italic" aria-label="Italic"><i>I</i></button>
+                    <button type="button" data-cmd="underline" aria-label="Underline"><u>U</u></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="tools-shapes">
+            <button type="button" class="shape-btn" data-shape="diamond" aria-label="Diamond"><svg viewBox="0 0 24 24"><path d="M12 3l9 9-9 9-9-9z"/></svg></button>
+            <button type="button" class="shape-btn" data-shape="triangle" aria-label="Triangle"><svg viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/></svg></button>
+            <button type="button" class="shape-btn" data-shape="circle" aria-label="Circle"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg></button>
+        </div>
+
+        <div class="tools-divider"></div>
+
+        <div class="tools-timer">
+            <button type="button" class="timer-reset" id="timer-reset" aria-label="Reset timer">&#10005;</button>
+            <div class="timer-wheels" id="timer-wheels">
+                <div class="timer-col" data-unit="h"><div class="timer-prev"></div><div class="timer-val">00</div><span class="timer-unit">h</span><div class="timer-next">01</div></div>
+                <div class="timer-col" data-unit="m"><div class="timer-prev"></div><div class="timer-val">00</div><span class="timer-unit">m</span><div class="timer-next">01</div></div>
+                <div class="timer-col" data-unit="s"><div class="timer-prev"></div><div class="timer-val">00</div><span class="timer-unit">s</span><div class="timer-next">01</div></div>
+            </div>
+            <div class="timer-side">
+                <button type="button" class="timer-preset" data-add="60">1m</button>
+                <button type="button" class="timer-preset" data-add="300">5m</button>
+                <button type="button" class="timer-play" id="timer-play" aria-label="Start timer">&#9654;</button>
+            </div>
+        </div>
+    </div>
+    <script src="tools.js"></script>
 </body>
 </html>

@@ -32,6 +32,15 @@
   function applyMode(mode) {
     currentMode = mode;
     debugLog("Applying mode:", mode);
+    const toolsEl = document.getElementById("mode-tools");
+    if (mode === 3) {
+      if (clockModeEl) clockModeEl.classList.add("mode-hidden");
+      if (nookModeEl) nookModeEl.classList.add("mode-hidden");
+      if (toolsEl) toolsEl.classList.remove("mode-hidden");
+      debugLog("Switched to Mode 3 (Notes + Timer)");
+      return;
+    }
+    if (toolsEl) toolsEl.classList.add("mode-hidden");
 
     if (clockModeEl && nookModeEl) {
       if (mode === 1) {
@@ -162,11 +171,11 @@
     debugLog("Key pressed:", e.key);
     if (e.key === "m" || e.key === "M") {
       debugLog("M key detected, switching mode");
-      applyMode(currentMode === 1 ? 2 : 1);
+      applyMode(currentMode === 3 ? 1 : currentMode + 1);
     } else if (e.key === " " || e.key === "Spacebar") {
       debugLog("Spacebar detected, switching mode");
       e.preventDefault(); // Prevent page scroll
-      applyMode(currentMode === 1 ? 2 : 1);
+      applyMode(currentMode === 3 ? 1 : currentMode + 1);
     }
   });
 
