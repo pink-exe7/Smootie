@@ -10,6 +10,24 @@ html, body {
   background: transparent !important;
 }
 
+/* Remove all focus outlines and box shadows globally */
+*:focus,
+*:focus-visible,
+*:focus-within,
+*:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Ensure body never shows any visual feedback */
+body:focus,
+body:active,
+body:focus-within {
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
 /* Shared Modes */
 .nook-tray {
   position: fixed !important;
@@ -27,8 +45,8 @@ html, body {
   flex-direction: column;
   box-sizing: border-box;
   border: none;
-  -webkit-backdrop-filter: blur(22px) saturate(180%);
-  backdrop-filter: blur(22px) saturate(180%);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
   overflow: visible;
   z-index: 9999 !important;
   opacity: 1;
@@ -37,6 +55,13 @@ html, body {
   user-select: none;
   -webkit-user-select: none;
   -webkit-app-region: no-drag !important;
+  box-shadow: none !important;
+}
+
+.nook-tray:focus,
+.nook-tray:focus-within {
+  outline: none;
+  box-shadow: none !important;
 }
 
 /* Hide helper */
@@ -92,7 +117,13 @@ html, body {
   user-select: none;
   -webkit-user-select: none;
   -webkit-app-region: no-drag !important;
-  box-shadow: none;
+  box-shadow: none !important;
+}
+
+.clock-island:focus,
+.clock-island:focus-within {
+  outline: none;
+  box-shadow: none !important;
 }
 
 .clock-inner {
@@ -750,207 +781,3 @@ body {
   -webkit-app-region: no-drag;
 }
 
-/* ===== Mode 3: Notes + Timer ===== */
-.tools-tray {
-  flex-direction: row !important;
-  align-items: stretch;
-  gap: 12px;
-  padding: 14px 16px 16px !important;
-  color: #ffffff;
-  --accent: #2f7bff;
-  --accent-glow: rgba(47, 123, 255, 0.55);
-  --panel: #1c1c1e;
-  --chip: #2c2c2e;
-}
-.tools-tray button {
-  font-family: inherit;
-  border: none;
-  cursor: pointer;
-  outline: none;
-  -webkit-app-region: no-drag;
-}
-.tools-notes {
-  flex: 1.1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  background: var(--panel);
-  border-radius: 22px;
-  padding: 14px 16px 10px;
-}
-.notes-pad {
-  flex: 1;
-  outline: none;
-  overflow-y: auto;
-  font-size: 17px;
-  line-height: 1.3;
-  color: #f2f2f7;
-  user-select: text;
-  -webkit-user-select: text;
-}
-.notes-toolbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 8px;
-}
-.notes-color {
-  width: 16px;
-  height: 16px;
-  border-radius: 5px;
-  background: var(--accent);
-  box-shadow: 0 0 10px var(--accent-glow);
-}
-.notes-format {
-  display: flex;
-  gap: 6px;
-}
-.notes-format button {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background: var(--chip);
-  color: #cfcfd4;
-  font-size: 14px;
-  transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
-}
-.notes-format button:hover {
-  background: #3a3a3c;
-  transform: scale(1.08);
-}
-.notes-format button.is-on {
-  color: #ffffff;
-  background: var(--accent);
-  box-shadow: 0 0 12px var(--accent-glow);
-}
-.tools-shapes {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  width: 54px;
-}
-.shape-btn {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: var(--panel);
-  border-radius: 18px;
-  transition: transform 0.15s ease, background 0.15s ease;
-}
-.shape-btn:hover {
-  background: #26262a;
-  transform: scale(1.05);
-}
-.shape-btn svg {
-  width: 22px;
-  height: 22px;
-  fill: var(--accent);
-  stroke: var(--accent);
-  stroke-width: 1.5;
-  stroke-linejoin: round;
-  filter: drop-shadow(0 0 6px var(--accent-glow));
-}
-.tools-divider {
-  width: 1px;
-  margin: 4px 2px;
-  background: rgba(255, 255, 255, 0.12);
-}
-.tools-timer {
-  flex: 1.5;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 10px;
-  min-width: 0;
-}
-.timer-reset {
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 26px;
-  height: 26px;
-  border-radius: 50%;
-  background: var(--chip);
-  color: #aaaaaf;
-  font-size: 12px;
-  z-index: 2;
-}
-.timer-wheels {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-}
-.timer-col {
-  position: relative;
-  width: 78px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: ns-resize;
-}
-.timer-val {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 10px 14px 10px 0;
-  text-align: center;
-  font-size: 30px;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  color: var(--accent);
-  background: var(--chip);
-  border-radius: 26px;
-  text-shadow: 0 0 14px var(--accent-glow);
-}
-.timer-unit {
-  position: absolute;
-  right: 12px;
-  top: 24px;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--accent);
-}
-.timer-prev, .timer-next {
-  height: 18px;
-  font-size: 13px;
-  line-height: 18px;
-  color: #8e8e93;
-  font-variant-numeric: tabular-nums;
-}
-.timer-side {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-}
-.timer-preset {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  background: var(--chip);
-  color: #ffffff;
-  font-size: 12px;
-  font-weight: 600;
-  transition: background 0.15s ease, transform 0.15s ease;
-}
-.timer-preset:hover {
-  background: #3a3a3c;
-  transform: scale(1.08);
-}
-.timer-play {
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
-  background: #1c3354;
-  color: #6aa7ff;
-  font-size: 16px;
-  box-shadow: 0 0 14px rgba(47, 123, 255, 0.25);
-  transition: transform 0.15s ease, box-shadow 0.15s ease;
-}
-.timer-play:hover {
-  transform: scale(1.06);
-  box-shadow: 0 0 20px var(--accent-glow);
-}

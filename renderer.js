@@ -32,6 +32,9 @@
   function applyMode(mode) {
     currentMode = mode;
     debugLog("Applying mode:", mode);
+    if (window.SmootieAPI && window.SmootieAPI.setFocusable) {
+      window.SmootieAPI.setFocusable(mode === 3);
+    }
     const toolsEl = document.getElementById("mode-tools");
     if (mode === 3) {
       if (clockModeEl) clockModeEl.classList.add("mode-hidden");
@@ -101,6 +104,22 @@
     initializeModeElements();
     applyMode(1);
   }
+
+  // Tools button: switch to Mode 3
+  document.addEventListener("click", (e) => {
+    if (e.target.closest && e.target.closest("#tab-tools")) {
+      e.stopPropagation();
+      applyMode(3);
+    }
+  }, true);
+
+  // Smootie tab: switch to Mode 2 (from any mode)
+  document.addEventListener("click", (e) => {
+    if (e.target.closest && e.target.closest("#tab-nook")) {
+      e.stopPropagation();
+      applyMode(2);
+    }
+  }, true);
 
   // Right-click to close app
   document.addEventListener("contextmenu", (e) => {
@@ -195,7 +214,7 @@
     if (!nookContent) {
       nookContent = document.querySelector(".nook-content");
     }
-    
+
     if (nookContent) {
       nookContent.addEventListener("click", (e) => {
         if (currentMode === 2) {
@@ -216,7 +235,7 @@
             '[role="button"]',
             '.clickable'
           ];
-          
+
           let isInteractive = false;
           let element = e.target;
           while (element && element !== nookContent) {
@@ -227,7 +246,7 @@
             }
             element = element.parentElement;
           }
-          
+
           // Only switch to Mode 1 if clicking on non-interactive background
           if (!isInteractive) {
             debugLog("Nook content background clicked, switching to Mode 1");
@@ -238,12 +257,65 @@
       });
     }
   }
+
+  // Click on tools tray (Mode 3) background to switch to Mode 1
+  function setupToolsClickHandler() {
+    const toolsTray = document.getElementById("mode-tools");
+    if (!toolsTray) return;
+
+    toolsTray.addEventListener("click", (e) => {
+      if (currentMode === 3) {
+        // Check if clicking on interactive elements
+        const interactiveSelectors = [
+          'button',
+          '#notes-pad',
+          '.notes-pad',
+          '.shape-btn',
+          '.timer-val',
+          '.timer-preset',
+          '.timer-play',
+          '.timer-reset',
+          'input',
+          'select',
+          'textarea',
+          'a',
+          '[role="button"]',
+          '.clickable'
+        ];
+
+        let isInteractive = false;
+        let element = e.target;
+        while (element && element !== toolsTray) {
+          if (interactiveSelectors.some(selector => element.matches?.(selector))) {
+            isInteractive = true;
+            console.log("[Tools Click] Click on interactive element detected:", element);
+            break;
+          }
+          element = element.parentElement;
+        }
+
+        // Only switch to Mode 1 if clicking on non-interactive background
+        if (!isInteractive) {
+          debugLog("Tools tray background clicked, switching to Mode 1");
+          e.stopPropagation();
+          applyMode(1);
+        }
+      }
+    });
+  }
   
   // Setup nook click handler after DOM is ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', setupNookClickHandler, { once: true });
   } else {
     setupNookClickHandler();
+  }
+
+  // Setup tools click handler after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupToolsClickHandler, { once: true });
+  } else {
+    setupToolsClickHandler();
   }
 
   // -------- CLOCK (Mode 1) --------

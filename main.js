@@ -1526,14 +1526,22 @@ function createWindow() {
     alwaysOnTop: true,
     skipTaskbar: true,
     hasShadow: false,
+    thickFrame: false,
+    roundedCorners: false,
     focusable: false,
     show: false,
+    type: "toolbar",
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
       contextIsolation: true,
       nodeIntegration: false
     }
   });
+
+  // Ensure no window shadow and prevent any visual changes on focus
+  win.setHasShadow(false);
+  win.setBackgroundColor('#00000000');
+  win.setContentProtection(true);
 
   win.setAlwaysOnTop(true, "screen-saver");
   win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
@@ -1910,7 +1918,16 @@ function setupIpcHandlers() {
   });
 
   // Quit app handler
-  ipcMain.on("quit-app", () => {
+  ipcMain.on("set-focusable", (event, v) => {
+  try {
+    const w = BrowserWindow.fromWebContents(event.sender);
+    if (!w) return;
+    w.setFocusable(!!v);
+    w.setHasShadow(false);
+    if (v) w.focus();
+  } catch (e) { console.log("set-focusable error:", e.message); }
+});
+ipcMain.on("quit-app", () => {
     console.log("quit-app IPC received");
     app.quit();
   });

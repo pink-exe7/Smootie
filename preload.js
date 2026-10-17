@@ -115,7 +115,8 @@ contextBridge.exposeInMainWorld("SmootieAPI", {
     },
 
     // Quit the app
-    quitApp: () => {
+    setFocusable: (v) => { ipcRenderer.send("set-focusable", !!v); },
+  quitApp: () => {
         ipcRenderer.send("quit-app");
     },
 
