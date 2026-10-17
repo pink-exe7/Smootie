@@ -132,6 +132,33 @@
   font-size: 11px;
   z-index: 2;
 }
+
+.timer-back {
+  position: absolute;
+  top: 84px;
+  left: 4px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--panel);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.2s ease;
+}
+
+.timer-back:hover {
+  background: #26262a;
+  transform: scale(1.05);
+}
+
+.timer-back svg {
+  width: 12px;
+  height: 12px;
+}
 .timer-wheels {
   flex: 1;
   display: flex;

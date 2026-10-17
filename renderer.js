@@ -121,6 +121,14 @@
     }
   }, true);
 
+  // Timer back button: switch to Mode 2
+  document.addEventListener("click", (e) => {
+    if (e.target.closest && e.target.closest("#timer-back")) {
+      e.stopPropagation();
+      applyMode(2);
+    }
+  }, true);
+
   // Right-click to close app
   document.addEventListener("contextmenu", (e) => {
     e.preventDefault();
@@ -275,6 +283,7 @@
           '.timer-preset',
           '.timer-play',
           '.timer-reset',
+          '#timer-back',
           'input',
           'select',
           'textarea',
