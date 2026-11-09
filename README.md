@@ -121,3 +121,9 @@ Please report issues with:
 ## 📄 License
 
 MIT License - see LICENSE file for details
+
+## Made by
+
+**pink.exe** ([pink-exe7](https://github.com/pink-exe7))
+
+Smootie comes with a black theme and a pink theme with its own glossy album art.
