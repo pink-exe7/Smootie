@@ -1359,3 +1359,32 @@
   }
   */
 })();
+// ===== Theme toggle: click the Smootie icon to switch black <-> pink =====
+(function () {
+  function init() {
+    var root = document.documentElement;
+    var icon = document.querySelector('#tab-nook .tab-icon');
+    if (!icon) return;
+    try {
+      if (localStorage.getItem('smootieTheme') === 'pink') root.classList.add('pink');
+    } catch (e) {}
+    icon.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var on = root.classList.toggle('pink');
+      try { localStorage.setItem('smootieTheme', on ? 'pink' : 'black'); } catch (err) {}
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+// ===== Theme toggle fix: capture-phase click on the Smootie icon =====
+document.addEventListener("click", function (e) {
+  if (e.target.closest && e.target.closest("#tab-nook .tab-icon")) {
+    var on = document.documentElement.classList.toggle("pink");
+    try { localStorage.setItem("smootieTheme", on ? "pink" : "black"); } catch (err) {}
+  }
+}, true);

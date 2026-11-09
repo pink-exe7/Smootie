@@ -781,3 +781,44 @@ body {
   -webkit-app-region: no-drag;
 }
 
+
+/* ===== Pink theme (toggled by clicking the Smootie icon) ===== */
+html.pink .nook-tray,
+html.pink .clock-island {
+  background: #f9d3e8 !important;
+}
+html.pink .nook-tray,
+html.pink .nook-tray *,
+html.pink .clock-island,
+html.pink .clock-island * {
+  color: #f2336f !important;
+}
+#tab-nook .tab-icon {
+  cursor: pointer;
+}
+
+/* ===== Pink theme fixes ===== */
+html.pink .clock-time, html.pink .clock-date, html.pink .calendar-month { text-shadow: none !important; }
+html.pink .svg-icon polyline { fill: none !important; stroke: currentColor !important; }
+
+/* ===== Pink theme: Mode 3 ===== */
+html.pink { --accent: #f2336f; }
+html.pink .notes-pad, html.pink .shape-btn, html.pink .timer-reset, html.pink .timer-back, html.pink .timer-val, html.pink .timer-preset, html.pink .timer-play { background: #f4b6d2 !important; background-image: none !important; }
+html.pink .notes-color { background: #f2336f !important; }
+html.pink .shape-btn svg, html.pink .shape-btn svg * { fill: #f2336f !important; stroke: #f2336f !important; }
+
+/* ===== Pink theme: Mode 3 variables ===== */
+html.pink .tools-tray { --panel: #f4b6d2; --chip: #eea0c4; --accent: #f2336f; }
+html.pink .notes-format button:hover, html.pink .shape-btn:hover { background: #eea0c4 !important; }
+html.pink .timer-val { border-color: #f2336f !important; box-shadow: none !important; outline: none !important; }
+html.pink .timer-col { box-shadow: none !important; outline: none !important; }
+html.pink .timer-back, html.pink .timer-back svg { color: #f2336f !important; stroke: #f2336f !important; }
+
+/* ===== Pink theme: top icons ===== */
+html.pink #record-btn circle, html.pink #menu-btn circle { fill: #f2336f !important; }
+html.pink #screenshot-btn circle { fill: none !important; stroke: #f2336f !important; }
+html.pink #screenshot-btn path { stroke: #f2336f !important; }
+html.pink .top-icon:hover { background: rgba(242, 51, 111, 0.15) !important; }
+
+/* ===== Pink theme: album art ===== */
+html.pink #album-art-img[src$="album-art.png"] { content: url("pink-art.png") !important; object-fit: cover; }
