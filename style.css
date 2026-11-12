@@ -1,4 +1,4 @@
-/* Nook Tray Island Widget - Exact Match to Photo */
+﻿/* Nook Tray Island Widget - Exact Match to Photo */
 
 html, body {
   margin: 0;
@@ -822,3 +822,31 @@ html.pink .top-icon:hover { background: rgba(242, 51, 111, 0.15) !important; }
 
 /* ===== Pink theme: album art ===== */
 html.pink #album-art-img[src$="album-art.png"] { content: url("pink-art.png") !important; object-fit: cover; }
+
+/* ===== Pink theme: album art fill fix ===== */
+html.pink .album-art:has(#album-art-img[src$="album-art.png"]) { background: url("pink-art.png") center / cover no-repeat !important; border: 0 !important; padding: 0 !important; }
+html.pink #album-art-img[src$="album-art.png"] { content: normal !important; opacity: 0 !important; }
+
+/* ===== Pink theme: profile picture ring fix ===== */
+html.pink .profile-picture { background: transparent !important; border: 0 !important; padding: 0 !important; box-shadow: none !important; outline: 0 !important; }
+html.pink .profile-picture img { width: 100% !important; height: 100% !important; object-fit: cover !important; border-radius: 50% !important; display: block !important; }
+
+/* ===== Mode 2: move Home and Notes tabs ===== */
+#tab-tray, #tab-tools { position: relative !important; left: -11px !important; }
+
+/* ===== Mode 2: move Home and Notes tabs ===== */
+#tab-tray, #tab-tools { position: relative !important; left: -11px !important; }
+
+
+
+
+/* ===== Mode 2: move Notes tab (translate) ===== */
+#tab-tools { translate: -11px 0 !important; }
+
+/* ===== Mode 2: Home and Notes icons only ===== */
+#tab-tray .tab-text, #tab-tools .tab-text { display: none !important; }
+
+/* ===== Mode 2: center events under dates ===== */
+.calendar-events { translate: 2px 0 !important; }
+
+

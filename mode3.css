@@ -1,4 +1,4 @@
-/* Mode 3: Notes + Timer (clean rewrite) */
+﻿/* Mode 3: Notes + Timer (clean rewrite) */
 .tools-tray {
   flex-direction: row !important;
   align-items: stretch;
@@ -251,3 +251,40 @@
   color: #7aaeff;
   font-size: 14px;
 }
+/* ===== Pink theme: Mode 3 back arrow ===== */
+html.pink .timer-back svg path { stroke: #f2336f !important; }
+
+/* ===== Mode 3: play button background matches presets ===== */
+.timer-play { background: var(--chip) !important; }
+
+/* ===== Mode 3 tweaks ===== */
+.timer-preset, .timer-play { flex: 0 0 auto !important; width: 28px !important; height: 28px !important; min-width: 28px !important; min-height: 28px !important; border-radius: 50% !important; }
+.timer-side { gap: 6px !important; }
+.timer-play { color: #ffffff !important; }
+html:not(.pink) .tools-tray { --panel: rgba(28, 28, 30, 0.8); --chip: rgba(44, 44, 46, 0.8); }
+html:not(.pink) .timer-col[data-unit="m"] .timer-val { background-color: rgba(52, 52, 58, 0.8); background-image: linear-gradient(rgba(107, 107, 112, 0.45), rgba(107, 107, 112, 0.45)), linear-gradient(rgba(107, 107, 112, 0.45), rgba(107, 107, 112, 0.45)); background-size: 40% 2px, 40% 2px; }
+
+/* ===== Mode 3 tweaks 2 ===== */
+.timer-preset, .timer-play { box-sizing: border-box !important; flex: 0 0 28px !important; width: 28px !important; height: 28px !important; min-width: 28px !important; max-width: 28px !important; min-height: 28px !important; max-height: 28px !important; padding: 0 !important; margin-left: 0 !important; margin-right: 0 !important; line-height: 1 !important; border-radius: 50% !important; display: flex !important; align-items: center; justify-content: center; overflow: hidden; }
+html:not(.pink) .tools-tray { --panel: rgba(255, 255, 255, 0.07); --chip: rgba(255, 255, 255, 0.07); }
+html:not(.pink) .timer-col[data-unit="m"] .timer-val { background-color: rgba(255, 255, 255, 0.07) !important; background-image: linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)), linear-gradient(rgba(255, 255, 255, 0.12), rgba(255, 255, 255, 0.12)) !important; background-size: 40% 1px, 40% 1px !important; }
+
+/* ===== Mode 3: move time boxes ===== */
+.timer-wheels { position: relative !important; left: 8px !important; top: 9px !important; }
+
+
+
+
+
+/* ===== Mode 3: move buttons down ===== */
+.timer-side { position: relative !important; top: 2px !important; }
+
+
+
+
+
+
+
+
+/* ===== Mode 3: center play triangle ===== */
+.timer-side .timer-play { padding: 0 0 0 4px !important; }
