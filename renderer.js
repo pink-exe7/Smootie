@@ -1388,3 +1388,17 @@ document.addEventListener("click", function (e) {
     try { localStorage.setItem("smootieTheme", on ? "pink" : "black"); } catch (err) {}
   }
 }, true);
+
+// ===== Restore: dots button opens the menu =====
+(function () {
+  function init() {
+    var btn = document.getElementById("menu-btn");
+    var menu = document.getElementById("menu-menu");
+    if (!btn || !menu) return;
+    btn.addEventListener("click", function (e) {
+      e.stopPropagation();
+      menu.style.display = (menu.style.display === "block") ? "none" : "block";
+    });
+  }
+  if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", init); } else { init(); }
+})();

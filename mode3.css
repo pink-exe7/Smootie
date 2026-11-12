@@ -288,3 +288,14 @@ html:not(.pink) .timer-col[data-unit="m"] .timer-val { background-color: rgba(25
 
 /* ===== Mode 3: center play triangle ===== */
 .timer-side .timer-play { padding: 0 0 0 4px !important; }
+
+/* ===== Mode 3: remove shapes column ===== */
+.tools-shapes { display: none !important; } .tools-notes { flex: 0 0 278px !important; }
+
+
+
+
+
+
+
+

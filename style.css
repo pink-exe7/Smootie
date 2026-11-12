@@ -850,3 +850,18 @@ html.pink .profile-picture img { width: 100% !important; height: 100% !important
 .calendar-events { translate: 2px 0 !important; }
 
 
+
+
+
+/* ===== Menu dropdown v2 ===== */
+.nook-top-bar { position: relative !important; z-index: 50 !important; }
+.top-bar-icons { position: relative !important; }
+.menu-menu { position: absolute !important; top: calc(100% + 4px) !important; right: 0 !important; left: auto !important; margin: 0 !important; min-width: 180px; padding: 5px !important; border-radius: 12px !important; background: rgba(28, 28, 30, 0.96) !important; border: 1px solid rgba(255, 255, 255, 0.08) !important; box-shadow: 0 10px 26px rgba(0, 0, 0, 0.4) !important; z-index: 100 !important; }
+.menu-menu .menu-item { display: block !important; width: 100% !important; background: transparent !important; text-align: left !important; padding: 8px 12px !important; font-size: 13px !important; white-space: nowrap; }
+.menu-menu .menu-item:hover { background: rgba(255, 255, 255, 0.1) !important; }
+html.pink .menu-menu { background: rgba(255, 240, 245, 0.97) !important; border-color: rgba(242, 51, 111, 0.25) !important; box-shadow: 0 10px 26px rgba(242, 51, 111, 0.25) !important; }
+html.pink .menu-menu .menu-item { color: #f2336f !important; }
+html.pink .menu-menu .menu-item:hover { background: rgba(242, 51, 111, 0.12) !important; }
+
+/* ===== Mode 2: move album art and music buttons ===== */
+#mode-nook .album-art, #mode-nook .music-control-btn { translate: -2px 0 !important; }
