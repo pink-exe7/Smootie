@@ -865,3 +865,49 @@ html.pink .menu-menu .menu-item:hover { background: rgba(242, 51, 111, 0.12) !im
 
 /* ===== Mode 2: move album art and music buttons ===== */
 #mode-nook .album-art, #mode-nook .music-control-btn { translate: -2px 0 !important; }
+
+/* ===== Fix: Notes tab uses margin, not translate ===== */
+#tab-tools { translate: none !important; margin-left: -11px !important; }
+
+/* ===== Home icon: medium rounded line ===== */
+#tab-tray .svg-icon * { stroke-width: 2 !important; stroke-linecap: round !important; stroke-linejoin: round !important; }
+
+/* ===== Home icon v3 ===== */
+#tab-tray .svg-icon * { fill: none !important; stroke: currentColor !important; stroke-width: 1.9 !important; stroke-linecap: round !important; stroke-linejoin: round !important; }
+
+/* ===== Home icon: 2px bigger ===== */
+#tab-tray .svg-icon { scale: 1.1 !important; }
+
+/* ===== Home icon: 2px bigger (2) ===== */
+#tab-tray .svg-icon { scale: 1.2 !important; }
+
+/* ===== Home icon: 16.4px ===== */
+#tab-tray .svg-icon { scale: 1.37 !important; }
+
+/* ===== Home icon: 15.4px ===== */
+#tab-tray .svg-icon { scale: 1.28 !important; }
+
+/* ===== Home icon: 1px up ===== */
+#tab-tray .svg-icon { position: relative !important; top: -1px !important; }
+
+/* ===== Home icon: 16.4px ===== */
+#tab-tray .svg-icon { scale: 1.37 !important; }
+
+/* ===== Notes icon: same size and thickness as Home ===== */
+#tab-tools .svg-icon { scale: 1.37 !important; } #tab-tools .svg-icon * { stroke-width: 1.9 !important; stroke-linecap: round !important; stroke-linejoin: round !important; }
+
+/* ===== Notes icon: 3px smaller ===== */
+#tab-tools .svg-icon { scale: 1.12 !important; }
+
+/* ===== Smootie pill thicker and 1px bigger, Notes thicker ===== */
+#tab-nook .svg-icon { scale: 1.08 !important; } #tab-nook .svg-icon * { stroke-width: 2.4 !important; stroke-linecap: round !important; stroke-linejoin: round !important; } #tab-tools .svg-icon * { stroke-width: 2.3 !important; }
+
+/* ===== Top icons: match Home size and thickness ===== */
+#screenshot-btn .svg-icon { width: 13.7px !important; height: 13.7px !important; } #screenshot-btn .svg-icon * { stroke-width: 2.6 !important; stroke-linecap: round !important; stroke-linejoin: round !important; } #record-btn .svg-icon { width: 20px !important; height: 20px !important; }
+
+
+/* ===== Menu icon: 1px bigger, 1px down ===== */
+#menu-btn .svg-icon { width: 17px !important; height: 17px !important; position: relative !important; top: 1px !important; }
+
+/* ===== Date hover: fainter background ===== */
+.calendar-date-item:hover { background: rgba(255, 255, 255, 0.02) !important; }
