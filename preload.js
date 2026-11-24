@@ -149,5 +149,8 @@ contextBridge.exposeInMainWorld("SmootieAPI", {
     // Notify main process of user interaction with island
     islandInteraction: () => {
         ipcRenderer.send("island-interaction");
-    }
+    },
+    toggleColorPanel: (o) => { ipcRenderer.send("toggle-color-panel", o); },
+    closeColorPanel: () => { ipcRenderer.send("close-color-panel"); },
+    onColorPicked: (cb) => { ipcRenderer.on("color-picked", (e, d) => cb(d)); }
 });

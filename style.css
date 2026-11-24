@@ -1059,3 +1059,95 @@ html.pink:root body .timer-back {
     inset 0 0 12px rgba(255,255,255,0.25),
     0 8px 18px rgba(242,51,111,0.30) !important;
 }
+
+/* ===== Mode 3: time boxes 2px higher ===== */
+html:root body .timer-col[data-unit] .timer-val {
+  translate: 0 -2px !important;
+}
+
+/* ===== Mode 3: time labels 2px higher ===== */
+html:root body .timer-col[data-unit] > :not(.timer-val) {
+  translate: 0 -2px !important;
+}
+
+/* ===== Mode 3: color square beside the x button ===== */
+html:root body .tools-timer > .notes-color {
+  position: absolute !important;
+  top: 5px !important;
+  left: 34px !important;
+  z-index: 2 !important;
+  cursor: pointer;
+}
+html:root body .notes-toolbar .notes-format {
+  margin-left: auto !important;
+}
+
+/* ===== Hide color square in Pink mode ===== */
+html.pink .notes-color {
+  display: none !important;
+}
+
+/* ===== Glass color panel (Mode 3) ===== */
+.tools-timer > .color-panel {
+  display: none;
+  position: absolute;
+  top: 4px;
+  left: -222px;
+  width: 200px;
+  padding: 10px;
+  box-sizing: border-box;
+  z-index: 20;
+  border-radius: 16px;
+  background: rgba(24, 28, 36, 0.78);
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+}
+.tools-timer > .color-panel.open { display: block; }
+.color-panel .cp-close {
+  position: absolute;
+  top: 6px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 50%;
+  background: transparent;
+  color: #fff;
+  font-size: 10px;
+  line-height: 18px;
+  cursor: pointer;
+}
+.color-panel .cp-close:hover { background: rgba(255, 255, 255, 0.15); }
+.color-panel .cp-sv {
+  position: relative;
+  width: 100%;
+  height: 84px;
+  margin-top: 22px;
+  border-radius: 10px;
+  cursor: crosshair;
+  touch-action: none;
+}
+.color-panel .cp-hue {
+  position: relative;
+  width: 100%;
+  height: 12px;
+  margin-top: 10px;
+  border-radius: 6px;
+  background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);
+  cursor: pointer;
+  touch-action: none;
+}
+.color-panel .cp-dot {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  margin: -6px 0 0 -6px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.7);
+  pointer-events: none;
+}
+.color-panel .cp-hue-dot { top: 50%; }

@@ -6,7 +6,7 @@
 
   // ---- Notes ----
   const pad = $("#notes-pad");
-  const COLORS = ["#2f7bff", "#34c759", "#ff9f0a", "#ff453a", "#bf5af2"];
+  const COLORS = ["#ffffff", "#34c759", "#ff9f0a", "#ff453a", "#bf5af2"];
   let colorIdx = 0;
 
   try {
@@ -27,10 +27,100 @@
     tray.style.setProperty("--accent", c);
     tray.style.setProperty("--accent-glow", "color-mix(in srgb, " + c + " 55%, transparent)");
   }
-  $("#notes-color").addEventListener("click", () => {
-    colorIdx = (colorIdx + 1) % COLORS.length;
+  const colorBtn = $("#notes-color");
+  const panel = document.createElement("div");
+  panel.className = "color-panel";
+  panel.innerHTML =
+    '<button type="button" class="cp-close" aria-label="Close">&#10005;</button>' +
+    '<div class="cp-sv"><div class="cp-dot cp-sv-dot"></div></div>' +
+    '<div class="cp-hue"><div class="cp-dot cp-hue-dot"></div></div>';
+  colorBtn.parentNode.appendChild(panel);
+  const sv = panel.querySelector(".cp-sv");
+  const svDot = panel.querySelector(".cp-sv-dot");
+  const hue = panel.querySelector(".cp-hue");
+  const hueDot = panel.querySelector(".cp-hue-dot");
+  let H = 0, S = 0, V = 1;
+  const clamp = (x) => Math.min(1, Math.max(0, x));
+
+  function setCustomColor(c) {
+    COLORS[colorIdx] = c;
     applyColor();
+  }
+  function hsvToHex(h, s, v) {
+    const f = (n) => { const k = (n + h / 60) % 6; return v - v * s * Math.max(Math.min(k, 4 - k, 1), 0); };
+    const to = (x) => Math.round(x * 255).toString(16).padStart(2, "0");
+    return "#" + to(f(5)) + to(f(3)) + to(f(1));
+  }
+  function hexToHsv(hex) {
+    const r = parseInt(hex.slice(1, 3), 16) / 255;
+    const g = parseInt(hex.slice(3, 5), 16) / 255;
+    const b = parseInt(hex.slice(5, 7), 16) / 255;
+    const mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn;
+    let h = 0;
+    if (d) {
+      if (mx === r) h = ((g - b) / d) % 6;
+      else if (mx === g) h = (b - r) / d + 2;
+      else h = (r - g) / d + 4;
+      h *= 60;
+      if (h < 0) h += 360;
+    }
+    return [h, mx ? d / mx : 0, mx];
+  }
+  function renderPanel() {
+    sv.style.background = "linear-gradient(to top, #000, transparent), linear-gradient(to right, #fff, hsl(" + H + ", 100%, 50%))";
+    svDot.style.left = (S * 100) + "%";
+    svDot.style.top = ((1 - V) * 100) + "%";
+    hueDot.style.left = (H / 360 * 100) + "%";
+  }
+  function commit(save) {
+    const c = hsvToHex(H, S, V);
+    setCustomColor(c);
+    if (save) { try { localStorage.setItem("smootie-color", c); } catch (e) {} }
+  }
+  function drag(el, fn) {
+    el.addEventListener("pointerdown", (e) => {
+      e.preventDefault();
+      el.setPointerCapture(e.pointerId);
+      fn(e);
+      const mv = (ev) => fn(ev);
+      const up = () => {
+        el.removeEventListener("pointermove", mv);
+        el.removeEventListener("pointerup", up);
+        commit(true);
+      };
+      el.addEventListener("pointermove", mv);
+      el.addEventListener("pointerup", up);
+    });
+  }
+  drag(sv, (e) => {
+    const r = sv.getBoundingClientRect();
+    S = clamp((e.clientX - r.left) / r.width);
+    V = 1 - clamp((e.clientY - r.top) / r.height);
+    renderPanel(); commit(false);
   });
+  drag(hue, (e) => {
+    const r = hue.getBoundingClientRect();
+    H = clamp((e.clientX - r.left) / r.width) * 360;
+    renderPanel(); commit(false);
+  });
+
+  try {
+    if (!localStorage.getItem("smootie-white-default")) { localStorage.removeItem("smootie-color"); localStorage.setItem("smootie-white-default", "1"); }
+    const savedColor = localStorage.getItem("smootie-color");
+    if (savedColor && /^#[0-9a-f]{6}$/i.test(savedColor)) {
+      [H, S, V] = hexToHsv(savedColor);
+      setCustomColor(savedColor);
+    }
+  } catch (e) {}
+  renderPanel();
+
+  colorBtn.addEventListener("click", () => {
+    const r = colorBtn.parentNode.getBoundingClientRect();
+    SmootieAPI.toggleColorPanel({ x: r.left + r.width / 2, y: r.bottom, hex: COLORS[colorIdx] });
+  });
+  SmootieAPI.onColorPicked((d) => { setCustomColor(d.hex); try { localStorage.setItem("smootie-color", d.hex); } catch (e) {} });
+  panel.querySelector(".cp-close").addEventListener("click", () => panel.classList.remove("open"));
+  document.addEventListener("pointerdown", (e) => { if (!colorBtn.contains(e.target)) SmootieAPI.closeColorPanel(); });
   $$(".notes-format button").forEach((btn) => {
     btn.addEventListener("mousedown", (e) => e.preventDefault());
     btn.addEventListener("click", () => {

@@ -2117,3 +2117,31 @@ app.on("activate", () => {
 app.on("window-all-closed", () => {
   app.quit();
 });
+
+// ---- Color panel popup (separate window under the timer) ----
+{
+  const { BrowserWindow: BW, ipcMain: IPC } = require("electron");
+  const pth = require("path");
+  let panelWin = null, islandWin = null;
+  function closePanel() { if (panelWin && !panelWin.isDestroyed()) panelWin.close(); panelWin = null; }
+  IPC.on("toggle-color-panel", (e, o) => {
+    if (panelWin && !panelWin.isDestroyed()) { closePanel(); return; }
+    islandWin = BW.fromWebContents(e.sender);
+    const b = islandWin.getBounds();
+    const W = 200, H = 160;
+    panelWin = new BW({
+      width: W, height: H,
+      x: Math.round(b.x + o.x - W / 2), y: Math.round(b.y + o.y),
+      frame: false, transparent: true, backgroundColor: "#00000000", resizable: false,
+      alwaysOnTop: true, skipTaskbar: true, hasShadow: false, thickFrame: false,
+      focusable: false, show: false, type: "toolbar",
+      webPreferences: { preload: pth.join(__dirname, "colorpanel-preload.js"), contextIsolation: true, nodeIntegration: false }
+    });
+    panelWin.setAlwaysOnTop(true, "screen-saver");
+    panelWin.loadFile(pth.join(__dirname, "colorpanel.html"), { query: { c: o.hex || "" } });
+    panelWin.once("ready-to-show", () => panelWin.showInactive());
+    panelWin.on("closed", () => { panelWin = null; });
+  });
+  IPC.on("close-color-panel", closePanel);
+  IPC.on("color-picked", (e, d) => { if (islandWin && !islandWin.isDestroyed()) islandWin.webContents.send("color-picked", d); });
+}

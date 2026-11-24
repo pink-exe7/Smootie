@@ -1,4 +1,4 @@
-﻿/* Mode 3: Notes + Timer (clean rewrite) */
+/* Mode 3: Notes + Timer (clean rewrite) */
 .tools-tray {
   flex-direction: row !important;
   align-items: stretch;
@@ -53,7 +53,7 @@
 .notes-pad:focus {
   outline: none !important;
   box-shadow: none !important;
-  background: var(--panel) !important;
+  background: transparent !important;
 }
 
 .notes-pad::selection {
