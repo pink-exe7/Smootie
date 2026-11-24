@@ -66,3 +66,7 @@ electron.exe
 # Temporary helper files
 ctx*.txt
 patch*.ps1
+
+# Backups from edits
+*.bak-*
+*.bak

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -35,8 +35,8 @@
                     <span class="tab-icon" aria-hidden="true">
                         <svg class="svg-icon" viewBox="0 0 24 24">
                             <path d="M2.8 11.6 L9.2 6 Q12 3.6 14.8 6 L21.2 11.6" />
-<path d="M5.2 10 V19 a2 2 0 0 0 2 2 H16.8 a2 2 0 0 0 2 -2 V10" />
-<path d="M10 21 V16 a2 2 0 0 1 4 0 V21" />
+<path d="M5.2 10 V16.5 a3 3 0 0 0 3 3 H15.8 a3 3 0 0 0 3 -3 V10" />
+<path d="M9.5 19.5 V14.7 a1.2 1.2 0 0 1 1.2 -1.2 H13.3 a1.2 1.2 0 0 1 1.2 1.2 V19.5" />
                         </svg>
                     </span>
                     <span class="tab-text">Home</span>
@@ -80,6 +80,9 @@
                     <button class="menu-item" id="menu-startup-toggle" type="button" aria-pressed="false">
                         Start with Windows (Off)
                     </button>
+                <button class="menu-item" id="menu-quote-editor-toggle" type="button" aria-pressed="false">
+                    Quote editor: Off
+                </button>
                 </div>
             </div>
         </div>
@@ -164,6 +167,7 @@
         </div>
     </div>
 
+    <script src="quotes.js"></script>
     <script src="renderer.js"></script>
     <!-- Mode 3: Notes + Timer -->
     <div class="nook-tray tools-tray mode-hidden" id="mode-tools">

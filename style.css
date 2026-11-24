@@ -1,4 +1,4 @@
-﻿/* Nook Tray Island Widget - Exact Match to Photo */
+/* Nook Tray Island Widget - Exact Match to Photo */
 
 html, body {
   margin: 0;
@@ -911,3 +911,100 @@ html.pink .menu-menu .menu-item:hover { background: rgba(242, 51, 111, 0.12) !im
 
 /* ===== Date hover: fainter background ===== */
 .calendar-date-item:hover { background: rgba(255, 255, 255, 0.02) !important; }
+
+/* Home icon: 3px bigger */
+#tab-tray .svg-icon { scale: 1.62 !important; }
+
+/* Home icon: thinner line */
+#tab-tray .svg-icon * { stroke-width: 1.6 !important; }
+
+/* Notes icon: 1px bigger */
+#tab-tools .svg-icon { scale: 1.12 !important; }
+
+/* Menu icon: 19px */
+#menu-btn .svg-icon { width: 19px !important; height: 19px !important; }
+
+
+/* ===== Quote wraps to two lines, dot 3px higher ===== */
+.calendar-events-text { max-width: 250px !important; text-align: center !important; white-space: normal !important; line-height: 1.25 !important; }
+.calendar-events-icon { top: 4px !important; }
+
+/* ===== Quote box: marked width ===== */
+.calendar-events-text { width: 277px !important; max-width: none !important; position: relative !important; left: -31px !important; text-align: center !important; white-space: normal !important; }
+/* Quote box: 2px higher */
+.calendar-events-text { top: -2px !important; }
+
+/* Quote text: 3px higher (5px total) */
+.calendar-events-text { top: -5px !important; }
+
+/* Dot: 2px higher */
+.calendar-events-icon { top: 2px !important; }
+
+/* Dot: smaller and higher */
+.calendar-events-icon { scale: 0.75 !important; top: 0px !important; }
+
+/* Quote text: 2px higher (7px total) */
+.calendar-events-text { top: -7px !important; }
+
+/* Quote text: 2px higher (9px total) */
+.calendar-events-text { top: -9px !important; }
+
+/* Quote text: more transparent */
+.calendar-events-text { opacity: 0.7 !important; }
+
+/* Month and dates: 4px higher */
+.calendar-month, .calendar-week-dates { translate: 0 -4px !important; }
+
+/* Month and dates: 7px higher total */
+.calendar-month, .calendar-week-dates { translate: 0 -7px !important; }
+
+/* Month and dates: 10px higher total */
+.calendar-month, .calendar-week-dates { translate: 0 -10px !important; }
+
+/* Month and dates: 9px higher total */
+.calendar-month, .calendar-week-dates { translate: 0 -9px !important; }
+
+/* Dot and quote: 5px higher */
+.calendar-events { translate: 2px -5px !important; }
+
+/* Dot and quote: 7px higher total */
+.calendar-events { translate: 2px -7px !important; }
+
+/* Dot only: 2px higher (translate) */
+.calendar-events-icon { translate: 0 -2px !important; }
+
+/* Quote text: a bit more transparent (both modes) */
+html .calendar-events-text, html.pink .calendar-events-text { opacity: 0.6 !important; }
+
+/* Quote text: a bit more transparent (both modes) */
+html .calendar-events-text, html.pink .calendar-events-text { opacity: 0.6 !important; }
+
+/* Quote text: a bit more transparent (both modes) */
+html .calendar-events-text, html.pink .calendar-events-text { opacity: 0.4 !important; }
+
+/* Quote text: a bit more transparent (both modes) */
+html .calendar-events-text, html.pink .calendar-events-text { opacity: 0.5 !important; }
+
+/* ===== Quote box: centered under the dot (CSS only) ===== */
+.calendar-events-text { width: 245px !important; max-width: none !important; left: 0px !important; text-align: center !important; white-space: normal !important; }
+
+/* Long quotes: start from the left edge */
+.calendar-events-text.quote-long { text-align: left !important; }
+
+/* ===== Quote edit pencil: same size and thickness as the screenshot icon ===== */
+#quote-edit-btn .svg-icon { width: 13.7px !important; height: 13.7px !important; } #quote-edit-btn .svg-icon * { stroke-width: 2.6 !important; stroke-linecap: round !important; stroke-linejoin: round !important; }
+
+/* ===== Quote edit pencil: 2px smaller ===== */
+#quote-edit-btn .svg-icon { width: 11.7px !important; height: 11.7px !important; }
+
+/* ===== Music buttons: 2px thicker ===== */
+.music-control-btn .svg-icon path { stroke-width: 4.8 !important; } .music-control-btn.play-btn .icon-play .svg-icon path { stroke: currentColor !important; stroke-width: 4.8 !important; stroke-linejoin: round !important; }
+
+/* ===== Music buttons: 1px thinner ===== */
+.music-control-btn .svg-icon path { stroke-width: 3.3 !important; } .music-control-btn.play-btn .icon-play .svg-icon path { stroke: currentColor !important; stroke-width: 3.3 !important; stroke-linejoin: round !important; }
+
+/* ===== Music buttons: 1px thinner (2) ===== */
+.music-control-btn .svg-icon path { stroke-width: 1.8 !important; } .music-control-btn.play-btn .icon-play .svg-icon path { stroke: currentColor !important; stroke-width: 1.8 !important; stroke-linejoin: round !important; }
+
+/* ===== Music buttons: 1px thinner ===== */
+.music-control-btn .svg-icon path { stroke-width: 3.3 !important; } .music-control-btn.play-btn .icon-play .svg-icon path { stroke: currentColor !important; stroke-width: 3.3 !important; stroke-linejoin: round !important; }

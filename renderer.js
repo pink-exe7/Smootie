@@ -1402,3 +1402,326 @@ document.addEventListener("click", function (e) {
   }
   if (document.readyState === "loading") { document.addEventListener("DOMContentLoaded", init); } else { init(); }
 })();
+
+
+/* ===== happyQuotes: daily happy quote instead of "Nothing for today" ===== */
+(function () {
+  var happyQuotes = [
+    "Be kind whenever possible. It is always possible.",
+    "Courage, dear heart.",
+    "There\u0027s always something to be thankful for.",
+    "Choose joy, every day.",
+    "There is always something left to love.",
+    "If you want to be happy, be.",
+    "The best is yet to be.",
+    "Find joy in little things.",
+    "Happiness starts within.",
+    "Make room for gratitude.",
+    "Smile more, worry less.",
+    "Nothing is worth more than this day.",
+    "Let gratitude become a habit.",
+    "Today is made for happiness.",
+    "Life is really simple, but we insist on making it complicated.",
+    "No act of kindness, no matter how small, is ever wasted.",
+    "Wherever you go, go with all your heart.",
+    "A loving heart is the beginning of all knowledge.",
+    "Find joy in what you have.",
+    "More light, less fear.",
+    "In the middle of difficulty lies opportunity.",
+    "Bright days begin with bright thoughts.",
+    "Happiness lives in the details.",
+    "Be joyful in hope.",
+    "Life is full of lovely surprises.",
+    "Sweet moments make sweet memories.",
+    "Find beauty in the ordinary.",
+    "No winter lasts forever; no spring skips its turn.",
+    "A cheerful heart is good medicine.",
+    "Everything has beauty, but not everyone sees it.",
+    "If you carry joy in your heart, you can heal any moment.",
+    "The greatest wealth is to live content with little.",
+    "I can be changed by what happens to me. But I refuse to be reduced by it.",
+    "Life is a succession of lessons which must be lived to be understood.",
+    "Joy is the simplest form of gratitude.",
+    "Do small things with great love.",
+    "Good things are coming.",
+    "I am seeking, I am striving, I am in it with all my heart.",
+    "It is the heart that makes a man rich.",
+    "Every day is a new beginning.",
+    "Believe in beautiful beginnings.",
+    "The secret of getting ahead is getting started.",
+    "Spread love everywhere you go.",
+    "Let all that you do be done in love.",
+    "The world is but a canvas to our imagination.",
+    "It is never too late to be what you might have been.",
+    "Hope is a waking dream.",
+    "There is no charm equal to tenderness of heart.",
+    "Believe you can and you\u0027re halfway there.",
+    "There is always light, if only we\u0027re brave enough to see it.",
+    "Turn your wounds into wisdom.",
+    "Every moment is a fresh beginning.",
+    "Be content with what you have.",
+    "Give thanks in all circumstances.",
+    "Gratitude is not only the greatest of virtues, but the parent of all the others.",
+    "Simplicity is the ultimate sophistication.",
+    "The quieter you become, the more you can hear.",
+    "Nothing is more honorable than a grateful heart.",
+    "Rest and be thankful.",
+    "Do not let the behavior of others destroy your inner peace.",
+    "Nothing can dim the light which shines from within.",
+    "Every moment is a gift.",
+    "No one can make you feel inferior without your consent.",
+    "Act as if what you do makes a difference. It does.",
+    "Well done is better than well said.",
+    "If you can dream it, you can do it.",
+    "Kindness is always beautiful.",
+    "It always seems impossible until it\u0027s done.",
+    "Go confidently in the direction of your dreams.",
+    "Choose kindness, always.",
+    "The journey of a thousand miles begins with a single step.",
+    "Keep your heart soft.",
+    "Be someone\u0027s happy moment.",
+    "We are what we repeatedly do.",
+    "Beauty is in the eye of the beholder.",
+    "Fill your world with love.",
+    "Our doubts are traitors.",
+    "The best thing in the world is a happy heart.",
+    "Walk by faith, not by sight.",
+    "Be strong and courageous.",
+    "A gentle answer turns away wrath.",
+    "Let us not become weary in doing good.",
+    "Too much pink? Never.",
+    "Keep smiling, sweet soul.",
+    "One day at a time.",
+    "Yesterday is history, tomorrow is a mystery, today is a gift.",
+    "Nothing is impossible to a willing heart.",
+    "Happiness is always in style.",
+    "Born to bloom and sparkle.",
+    "Keep calm and stay bubbly.",
+    "Happiness is contagious, spread it!",
+    "You deserve beautiful days.",
+    "Give yourself more reasons to smile.",
+    "Be gentle with your heart.",
+    "Your happiness matters.",
+    "Grow at your own pace.",
+    "You are your own sunshine.",
+    "Celebrate your little victories.",
+    "Choose yourself, choose joy.",
+    "Let yourself bloom.",
+    "Your smile is your superpower.",
+    "Be proud of your journey.",
+    "Find peace in your own light.",
+    "You are enough, always.",
+    "Give yourself permission to shine.",
+    "Make yourself a priority.",
+    "Be your favorite reason to smile.",
+    "You\u0027re doing beautifully.",
+    "Let your happiness be loud.",
+    "Let wonder fill your days.",
+    "Believe in happy endings.",
+    "Chase dreams, catch sunshine.",
+    "Magic happens when you smile.",
+    "Keep dreaming in color.",
+    "Make wishes, find wonders.",
+    "The world is full of wonder.",
+    "Let your dreams bloom.",
+    "A little wonder goes a long way.",
+    "Stay dreamy, stay happy.",
+    "Have patience, for patience is the key of joy.",
+    "Nothing should be out of the reach of hope. Life is a hope.",
+    "Happiness is a little everyday miracle.",
+    "Try to be a rainbow in someone\u0027s cloud.",
+    "Live, and be happy, and make others so.",
+    "The test of all happiness is gratitude.",
+    "Choose kindness.",
+    "Living a life of gratitude.",
+    "Everything unfolds in its own time."
+  ];
+  if (window.extraQuotes && window.extraQuotes.length) { happyQuotes.length = 0; window.extraQuotes.forEach(function (q) { if (happyQuotes.indexOf(q) < 0) happyQuotes.push(q); }); }
+  window.happyQuotesAll = happyQuotes;
+  function showHappyQuote() {
+    var el = document.getElementById('calendar-events-text');
+    if (!el) return;
+    if (el.textContent.trim() !== 'Nothing for today') return;
+    var n = new Date();
+    var day = Math.floor(Date.UTC(n.getFullYear(), n.getMonth(), n.getDate()) / 86400000);
+    el.textContent = happyQuotes[day % happyQuotes.length] + "\u00A0\uD83C\uDF38";
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', showHappyQuote);
+  } else {
+    showHappyQuote();
+  }
+})();
+
+/* ===== Quote box: left-align long quotes ===== */
+(function () {
+  function mark() {
+    var el = document.getElementById('calendar-events-text');
+    var month = document.getElementById('calendar-month');
+    if (!el) return;
+    el.style.translate = '';
+    el.style.removeProperty('width');
+    var r = document.createRange();
+    r.selectNodeContents(el);
+    var isLong = r.getClientRects().length > 1;
+    el.classList.toggle('quote-long', isLong);
+    if (isLong && month) {
+      var left = month.getBoundingClientRect().left;
+      var nums = document.querySelectorAll('.calendar-date-number');
+      var last = nums[nums.length - 1];
+      if (last) {
+        var lr = document.createRange();
+        lr.selectNodeContents(last);
+        var right = lr.getBoundingClientRect().right + 5;
+        el.style.setProperty('width', Math.max(120, right - left + 8) + 'px', 'important');
+      }
+      var delta = left - 2 - el.getBoundingClientRect().left + (parseFloat(el.style.left) || 0);
+      el.style.translate = delta + 'px 0';
+    }
+  }
+  var box = document.getElementById('calendar-events-text');
+  if (box) {
+    new MutationObserver(mark).observe(box, { childList: true, characterData: true, subtree: true });
+  }
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(mark);
+    ['calendar-month', 'calendar-week-dates'].forEach(function (id) {
+      var n = document.getElementById(id);
+      if (n) ro.observe(n);
+    });
+  }
+  mark();
+  document.addEventListener('DOMContentLoaded', mark);
+  window.addEventListener('load', mark);
+  window.addEventListener('resize', mark);
+})();
+
+/* ===== Quote positions: edit panel (click the pencil) ===== */
+(function () {
+  var KEY = 'smootieQuoteAdj';
+  var SUF = '\u00A0\uD83C\uDF38';
+  var el = document.getElementById('calendar-events-text');
+  if (!el) return;
+  var adj = {};
+  try { adj = JSON.parse(localStorage.getItem(KEY) || '{}') || {}; } catch (e) { adj = {}; }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(adj)); } catch (e) {} }
+  function keyOf() { return el.textContent.replace(SUF, '').trim(); }
+
+  var NODRAG = '-webkit-app-region:no-drag;';
+  var panel = null, info = null, idx = 0, original = '', draft = { dx: 0, align: '' };
+
+  function current() { return panel ? draft : (adj[keyOf()] || {}); }
+  function apply() {
+    var a = current();
+    if (a.dx) el.style.setProperty('left', a.dx + 'px', 'important'); else el.style.removeProperty('left');
+    if (a.align) el.style.setProperty('text-align', a.align, 'important'); else el.style.removeProperty('text-align');
+  }
+  new MutationObserver(apply).observe(el, { childList: true, characterData: true, subtree: true });
+  apply();
+
+  var enabled = false;
+  try { enabled = localStorage.getItem('smootieQuoteEditor') === 'on'; } catch (e) {}
+  window.setQuoteEditor = function (on) {
+    enabled = !!on;
+    try { localStorage.setItem('smootieQuoteEditor', enabled ? 'on' : 'off'); } catch (e) {}
+    if (!enabled && panel) close();
+    sync();
+  };
+  var pen = document.createElement('button');
+  pen.type = 'button';
+  pen.id = 'quote-edit-btn'; pen.className = 'top-icon'; pen.innerHTML = '<svg class="svg-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M17 3a2.8 2.8 0 0 1 4 4L7.5 20.5 2 22l1.5-5.5Z" fill="none" stroke="white" stroke-width="2"/></svg>';
+  pen.title = 'Edit quote positions';
+  pen.style.display = 'none';
+  var bar = document.querySelector('.top-bar-icons'); var shot = document.getElementById('screenshot-btn');
+  if (bar) bar.insertBefore(pen, shot || bar.firstChild); else document.body.appendChild(pen);
+
+  function visible() { return el.getBoundingClientRect().width > 0; }
+  function sync() { pen.style.display = (enabled && !panel && visible()) ? '' : 'none'; }
+  function same(a, b) { return (a.dx || 0) === (b.dx || 0) && (a.align || '') === (b.align || ''); }
+  function label() {
+    var saved = adj[keyOf()] || {};
+    info.textContent = 'Quote ' + (idx + 1) + ' / ' + window.happyQuotesAll.length + '  |  moved ' + (draft.dx || 0) + 'px  |  align ' + (draft.align || 'auto') + '  |  ' + (same(draft, saved) ? 'saved' : 'unsaved');
+  }
+  function show() {
+    el.textContent = window.happyQuotesAll[idx] + SUF;
+    var a = adj[keyOf()] || {};
+    draft = { dx: a.dx || 0, align: a.align || '' };
+    apply();
+    label();
+  }
+  function change(fn) { fn(draft); apply(); label(); }
+  function commit() {
+    var q = keyOf();
+    if (draft.dx || draft.align) adj[q] = { dx: draft.dx || 0, align: draft.align || '' }; else delete adj[q];
+    save();
+    label();
+  }
+  function btn(text, fn, bg) {
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.textContent = text;
+    b.style.cssText = 'margin:2px;padding:3px 8px;border:0;border-radius:6px;background:' + (bg || '#f4b6d2') + ';color:#222;font:12px sans-serif;cursor:pointer;' + NODRAG;
+    b.addEventListener('click', function (e) { e.stopPropagation(); fn(); });
+    return b;
+  }
+  function close() {
+    if (!panel) return;
+    if (panel.parentNode) panel.parentNode.removeChild(panel);
+    panel = null;
+    el.textContent = original;
+    sync();
+  }
+  function open() {
+    var all = window.happyQuotesAll;
+    if (!all || !all.length || !visible()) return;
+    original = el.textContent;
+    idx = Math.max(0, all.indexOf(keyOf()));
+    panel = document.createElement('div');
+    panel.style.cssText = 'position:fixed;top:4px;left:4px;max-width:300px;padding:6px 22px 6px 6px;background:rgba(255,228,238,0.97);color:#222;border-radius:10px;z-index:99999;' + NODRAG;
+    var x = document.createElement('button');
+    x.type = 'button';
+    x.textContent = '\u2715';
+    x.title = 'Close (unsaved changes are discarded)';
+    x.style.cssText = 'position:absolute;top:3px;right:4px;width:16px;height:16px;padding:0;border:0;background:transparent;color:#444;font:11px/16px sans-serif;cursor:pointer;' + NODRAG;
+    x.addEventListener('click', function (e) { e.stopPropagation(); close(); });
+    panel.appendChild(x);
+    info = document.createElement('div');
+    info.style.cssText = 'font:11px/1.35 sans-serif;margin:0 2px 4px;';
+    panel.appendChild(info);
+    panel.appendChild(btn('\u25C0', function () { idx = (idx + all.length - 1) % all.length; show(); }));
+    panel.appendChild(btn('\u25B6', function () { idx = (idx + 1) % all.length; show(); }));
+    panel.appendChild(btn('\u2190', function () { change(function (a) { a.dx = (a.dx || 0) - 1; }); }));
+    panel.appendChild(btn('\u2192', function () { change(function (a) { a.dx = (a.dx || 0) + 1; }); }));
+    panel.appendChild(btn('Align', function () { change(function (a) { if (!a.align) a.align = 'left'; else if (a.align === 'left') a.align = 'center'; else a.align = ''; }); }));
+    panel.appendChild(btn('Reset', function () { draft = { dx: 0, align: '' }; apply(); label(); }));
+    panel.appendChild(btn('Save', commit, '#f2336f'));
+    panel.addEventListener('click', function (e) { e.stopPropagation(); });
+    document.body.appendChild(panel);
+    pen.style.display = 'none';
+    show();
+  }
+  pen.addEventListener('click', function (e) { e.stopPropagation(); open(); });
+  if (window.ResizeObserver) {
+    new ResizeObserver(function () { if (panel && !visible()) close(); else sync(); }).observe(el);
+  }
+  sync();
+})();
+
+/* ===== Quote editor switch (dots menu) ===== */
+(function () {
+  function init() {
+    var b = document.getElementById('menu-quote-editor-toggle');
+    var menu = document.getElementById('menu-menu');
+    if (!b) return;
+    function isOn() { try { return localStorage.getItem('smootieQuoteEditor') === 'on'; } catch (e) { return false; } }
+    function label() { b.textContent = 'Quote editor: ' + (isOn() ? 'On' : 'Off'); b.setAttribute('aria-pressed', isOn() ? 'true' : 'false'); }
+    label();
+    b.addEventListener('click', function (e) {
+      e.stopPropagation();
+      if (window.setQuoteEditor) window.setQuoteEditor(!isOn());
+      label();
+      if (menu) menu.style.display = 'none';
+    });
+  }
+  if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
+})();

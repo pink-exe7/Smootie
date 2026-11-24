@@ -1167,7 +1167,7 @@ async function checkVideoPlayback() {
     const isScreenpressoActive = ownerName.includes('screenpresso') || title.includes('screenpresso');
 
     // Debug logging to see what's detected
-    console.log("[Window Detection] ownerName:", ownerName, "title:", title, "isScreenpressoActive:", isScreenpressoActive);
+    // console.log("[Window Detection] ownerName:", ownerName, "title:", title, "isScreenpressoActive:", isScreenpressoActive);
 
     // If Screenpresso is active, ALWAYS show the island and skip fullscreen logic completely
     if (isScreenpressoActive) {
