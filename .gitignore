@@ -70,3 +70,6 @@ patch*.ps1
 # Backups from edits
 *.bak-*
 *.bak
+node_modules/
+*.bak-*
+*.SAVED-*

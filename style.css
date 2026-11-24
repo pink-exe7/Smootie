@@ -1008,3 +1008,54 @@ html .calendar-events-text, html.pink .calendar-events-text { opacity: 0.5 !impo
 
 /* ===== Music buttons: 1px thinner ===== */
 .music-control-btn .svg-icon path { stroke-width: 3.3 !important; } .music-control-btn.play-btn .icon-play .svg-icon path { stroke: currentColor !important; stroke-width: 3.3 !important; stroke-linejoin: round !important; }
+
+/* ===== Mode 3: iOS liquid glass timer ===== */
+html:root body .timer-col[data-unit] .timer-val,
+html:root body .timer-preset,
+html:root body .timer-play,
+html:root body .timer-reset,
+html:root body .timer-back {
+  background: linear-gradient(160deg, rgba(255,255,255,0.62) 0%, rgba(255,255,255,0.22) 45%, rgba(255,255,255,0.38) 100%) !important;
+  -webkit-backdrop-filter: blur(16px) saturate(180%) !important;
+  backdrop-filter: blur(16px) saturate(180%) !important;
+  border: 1px solid rgba(255,255,255,0.7) !important;
+  box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.95), inset 0 -2px 4px rgba(242,51,111,0.10), 0 6px 16px rgba(242,51,111,0.20) !important;
+}
+html:not(.pink):root body .timer-col[data-unit] .timer-val,
+html:not(.pink):root body .timer-preset,
+html:not(.pink):root body .timer-play,
+html:not(.pink):root body .timer-reset,
+html:not(.pink):root body .timer-back {
+  background: linear-gradient(160deg, rgba(255,255,255,0.26) 0%, rgba(255,255,255,0.07) 45%, rgba(255,255,255,0.14) 100%) !important;
+  border: 1px solid rgba(255,255,255,0.28) !important;
+  box-shadow: inset 0 1.5px 1px rgba(255,255,255,0.45), inset 0 -2px 4px rgba(0,0,0,0.25), 0 6px 16px rgba(0,0,0,0.35) !important;
+}
+html.pink body .timer-play { color: #f2336f !important; }
+
+/* ===== Mode 3: prominent tinted glass (play) ===== */
+html:root body .timer-play {
+  background: linear-gradient(135deg, rgba(242,51,111,0.75) 0%, rgba(242,51,111,0.45) 40%, rgba(242,51,111,0.45) 60%, rgba(255,120,160,0.65) 100%) !important;
+  -webkit-backdrop-filter: blur(8px) saturate(180%) !important;
+  backdrop-filter: blur(8px) saturate(180%) !important;
+  border: 1px solid rgba(255,255,255,0.55) !important;
+  color: #ffffff !important;
+  box-shadow:
+    inset 3px 3px 2px -2px rgba(255,255,255,0.95),
+    inset -3px -3px 2px -2px rgba(255,255,255,0.60),
+    inset 0 0 12px rgba(255,255,255,0.25),
+    0 8px 18px rgba(242,51,111,0.40) !important;
+}
+
+/* ===== Mode 3: light pink tint on regular glass ===== */
+html.pink:root body .timer-col[data-unit] .timer-val,
+html.pink:root body .timer-preset,
+html.pink:root body .timer-reset,
+html.pink:root body .timer-back {
+  background: linear-gradient(135deg, rgba(242,51,111,0.32) 0%, rgba(242,51,111,0.16) 40%, rgba(242,51,111,0.16) 60%, rgba(255,120,160,0.28) 100%) !important;
+  border: 1px solid rgba(255,255,255,0.55) !important;
+  box-shadow:
+    inset 3px 3px 2px -2px rgba(255,255,255,0.95),
+    inset -3px -3px 2px -2px rgba(255,255,255,0.60),
+    inset 0 0 12px rgba(255,255,255,0.25),
+    0 8px 18px rgba(242,51,111,0.30) !important;
+}
