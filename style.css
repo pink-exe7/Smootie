@@ -1151,3 +1151,22 @@ html.pink .notes-color {
   pointer-events: none;
 }
 .color-panel .cp-hue-dot { top: 50%; }
+
+/* smootie-ears: concave top corners like NotchNook */
+.nook-tray::before,
+.nook-tray::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  pointer-events: none;
+}
+.nook-tray::before {
+  left: -20px;
+  background: radial-gradient(circle at 0 100%, transparent 20.5px, #000000 21px);
+}
+.nook-tray::after {
+  right: -20px;
+  background: radial-gradient(circle at 100% 100%, transparent 20.5px, #000000 21px);
+}

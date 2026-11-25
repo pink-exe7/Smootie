@@ -305,3 +305,40 @@ html:not(.pink) .timer-col[data-unit="m"] .timer-val { background-color: rgba(25
 
 /* smootie-1m-up */
 .timer-preset[data-add="60"] { top: -7px; }
+
+/* smootie-ears-all: ears for all modes, color follows theme */
+.nook-tray, .clock-island { --ear-bg: #000000; }
+html.pink .nook-tray, html.pink .clock-island { --ear-bg: #f9d3e8; }
+
+/* Mode 3 clipped the ears */
+.tools-tray { overflow: visible !important; }
+
+.nook-tray::before { background: radial-gradient(circle at 0 100%, transparent 20.5px, var(--ear-bg) 21px) !important; }
+.nook-tray::after  { background: radial-gradient(circle at 100% 100%, transparent 20.5px, var(--ear-bg) 21px) !important; }
+
+/* Mode 1 (clock): smaller ears */
+.clock-island::before,
+.clock-island::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  pointer-events: none;
+}
+.clock-island::before {
+  left: -14px;
+  background: radial-gradient(circle at 0 100%, transparent 14.5px, var(--ear-bg) 15px);
+}
+.clock-island::after {
+  right: -14px;
+  background: radial-gradient(circle at 100% 100%, transparent 14.5px, var(--ear-bg) 15px);
+}
+/* smootie-ear-overlap: ears overlap the island by 1px to hide the seam */
+.nook-tray::before, .nook-tray::after { top: -1px !important; width: 21px !important; height: 21px !important; }
+.nook-tray::before { left: -20px !important; background: radial-gradient(circle at 0 100%, transparent 20px, var(--ear-bg) 20.5px) !important; }
+.nook-tray::after  { right: -20px !important; background: radial-gradient(circle at 100% 100%, transparent 20px, var(--ear-bg) 20.5px) !important; }
+
+.clock-island::before, .clock-island::after { top: -1px !important; width: 15px !important; height: 15px !important; }
+.clock-island::before { left: -14px !important; background: radial-gradient(circle at 0 100%, transparent 14px, var(--ear-bg) 14.5px) !important; }
+.clock-island::after  { right: -14px !important; background: radial-gradient(circle at 100% 100%, transparent 14px, var(--ear-bg) 14.5px) !important; }
