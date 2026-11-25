@@ -9,6 +9,19 @@ const { exec } = require('child_process');
 const { promisify } = require('util');
 const execAsync = promisify(exec);
 const koffi = require('koffi');
+// ---- Hide from screenshots setting (saved in userData, default: hidden) ----
+function hideShotFile() { return path.join(app.getPath('userData'), 'screenshot-setting.json'); }
+function getHideFromScreenshots() {
+  try {
+    const d = JSON.parse(fs.readFileSync(hideShotFile(), 'utf8'));
+    if (typeof d.hide === 'boolean') return d.hide;
+  } catch (e) {}
+  return true;
+}
+function saveHideFromScreenshots(hide) {
+  try { fs.writeFileSync(hideShotFile(), JSON.stringify({ hide: !!hide })); }
+  catch (e) { console.error('[Hide screenshots] could not save setting:', e.message); }
+}
 
 // Platform detection
 const platform = process.platform;
@@ -1474,6 +1487,7 @@ function getAffinityName(affinity) {
 // Helper function to set window display affinity on Windows
 // This allows the window to be visible to the user but excluded from screen capture
 async function setWindowDisplayAffinity(excludeFromCapture) {
+  excludeFromCapture = getHideFromScreenshots(); // follows the menu setting
   if (!isWindows || !win || win.isDestroyed()) return;
 
   try {
@@ -1541,7 +1555,7 @@ function createWindow() {
   // Ensure no window shadow and prevent any visual changes on focus
   win.setHasShadow(false);
   win.setBackgroundColor('#00000000');
-  win.setContentProtection(true);
+  win.setContentProtection(getHideFromScreenshots());
 
   win.setAlwaysOnTop(true, "screen-saver");
   win.setVisibleOnAllWorkspaces(true, { visibleOnFullScreen: true });
@@ -1731,7 +1745,13 @@ function setupIpcHandlers() {
   });
 
   // Startup handlers
-  ipcMain.handle("get-startup-enabled", async () => {
+  ipcMain.handle("get-hide-screenshots", async () => getHideFromScreenshots());
+ipcMain.handle("set-hide-screenshots", async (event, hide) => {
+  saveHideFromScreenshots(!!hide);
+  await setWindowDisplayAffinity(!!hide);
+  return getHideFromScreenshots();
+});
+ipcMain.handle("get-startup-enabled", async () => {
     return getStartupEnabled();
   });
 

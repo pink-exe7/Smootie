@@ -97,6 +97,9 @@ contextBridge.exposeInMainWorld("SmootieAPI", {
     },
 
     // Startup (Windows login) controls
+    getHideScreenshots: () => ipcRenderer.invoke("get-hide-screenshots"),
+    setHideScreenshots: (hide) => ipcRenderer.invoke("set-hide-screenshots", hide),
+
     getStartupEnabled: () => {
         return ipcRenderer.invoke("get-startup-enabled");
     },

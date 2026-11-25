@@ -1725,3 +1725,28 @@ document.addEventListener("click", function (e) {
   }
   if (document.readyState === 'loading') { document.addEventListener('DOMContentLoaded', init); } else { init(); }
 })();
+
+
+// ===== Hide from screenshots toggle (menu item after Start with Windows) =====
+(function () {
+  function init() {
+    var btn = document.getElementById('menu-hide-screenshots-toggle');
+    if (!btn || !window.SmootieAPI || !window.SmootieAPI.getHideScreenshots) return;
+    function paint(on) {
+      btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+      btn.textContent = on ? 'Hide from screenshots (On)' : 'Hide from screenshots (Off)';
+    }
+    window.SmootieAPI.getHideScreenshots().then(paint).catch(function () { paint(true); });
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      var prev = btn.getAttribute('aria-pressed') === 'true';
+      paint(!prev);
+      var m = document.getElementById('menu-menu');
+      if (m) m.style.display = 'none';
+      window.SmootieAPI.setHideScreenshots(!prev)
+        .then(function (r) { if (typeof r === 'boolean') paint(r); })
+        .catch(function () { paint(prev); });
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+})();
